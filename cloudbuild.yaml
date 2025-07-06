@@ -37,4 +37,8 @@ images:
   - 'gcr.io/$PROJECT_ID/interviewscaffold'
 
 # Build timeout (optional)
-timeout: '1200s' 
+timeout: '1200s'
+
+# Logging configuration
+options:
+  logging: CLOUD_LOGGING_ONLY 
