@@ -59,7 +59,8 @@ backend/
 
 ## ✨ Development
 - Edit React code in `frontend/`, Java code in `src/main/java/`
-- Use `docker-compose.dev.yml` and `Dockerfile.dev` for hot reloading (see comments in those files)
+- Use `dev.sh` for hot reload development (backend in Docker, frontend locally)
+- Use `docker-compose.dev.yml` for backend-only Docker development
 
 ---
 
