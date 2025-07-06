@@ -17,8 +17,8 @@ frontend/npm-debug.log*
 frontend/yarn-debug.log*
 frontend/yarn-error.log*
 
-# React build
-frontend/build
+# React build (exclude build output but keep source)
+frontend/build/
 
 # Maven
 target

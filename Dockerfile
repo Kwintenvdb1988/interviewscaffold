@@ -6,13 +6,13 @@ FROM node:18-alpine AS frontend-builder
 # Set working directory
 WORKDIR /app/frontend
 
-# Copy package files
+# Copy package files first for better caching
 COPY frontend/package*.json ./
 
 # Install dependencies
-RUN npm ci
+RUN npm install
 
-# Copy source code
+# Copy all frontend source files
 COPY frontend/ ./
 
 # Build React app
@@ -41,7 +41,7 @@ RUN ./mvnw clean package -DskipTests
 # Stage 3: Runtime container
 FROM eclipse-temurin:17-jre
 
-# Install necessary packages
+# Install curl for health check
 RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 
 # Create app user
