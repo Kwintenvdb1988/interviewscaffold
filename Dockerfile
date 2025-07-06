@@ -10,7 +10,7 @@ WORKDIR /app/frontend
 COPY frontend/package*.json ./
 
 # Install dependencies
-RUN npm ci --only=production
+RUN npm ci
 
 # Copy source code
 COPY frontend/ ./
@@ -28,7 +28,6 @@ WORKDIR /app
 COPY pom.xml ./
 COPY mvnw ./
 COPY .mvn/ ./.mvn/
-COPY frontend/ ./frontend/
 
 # Copy source code
 COPY src/ ./src/
