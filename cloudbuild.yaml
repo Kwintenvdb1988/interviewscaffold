@@ -16,6 +16,8 @@ steps:
       - 'interviewscaffold'
       - '--image'
       - 'gcr.io/$PROJECT_ID/interviewscaffold'
+      - '--region'
+      - 'europe-west1'
       - '--platform'
       - 'managed'
       - '--allow-unauthenticated'
