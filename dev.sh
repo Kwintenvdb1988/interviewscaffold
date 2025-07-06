@@ -6,7 +6,7 @@ echo "🚀 Starting development environment..."
 
 # Start the backend in Docker (includes frontend build)
 echo "📦 Starting Spring Boot backend in Docker..."
-docker-compose -f docker-compose.dev.yml up -d
+docker-compose up -d
 
 # Wait for backend to be ready
 echo "⏳ Waiting for backend to be ready..."

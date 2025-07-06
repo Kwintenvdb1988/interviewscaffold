@@ -14,9 +14,7 @@ This project uses a **single, optimized Dockerfile** for all environments.
 - Uses main Dockerfile
 - Full application (frontend + backend)
 
-### `docker-compose.dev.yml` - Development
-- Uses main Dockerfile
-- Backend only (for `dev.sh` script)
+
 
 ### `dev.sh` - Hot Reload Development
 - Backend runs in Docker
@@ -35,8 +33,8 @@ docker compose up
 # Development (hot reload)
 sh ./dev.sh
 
-# Backend-only development
-docker compose -f docker-compose.dev.yml up
+# Full application in Docker
+docker compose up
 ```
 
 ## Why Single Dockerfile?

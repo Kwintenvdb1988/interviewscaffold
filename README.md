@@ -60,7 +60,7 @@ backend/
 ## ✨ Development
 - Edit React code in `frontend/`, Java code in `src/main/java/`
 - Use `dev.sh` for hot reload development (backend in Docker, frontend locally)
-- Use `docker-compose.dev.yml` for backend-only Docker development
+- Use `docker compose up` for full application in Docker
 
 ---
 
