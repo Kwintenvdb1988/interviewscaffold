@@ -30,7 +30,7 @@ steps:
       - '--image'
       - 'europe-west1-docker.pkg.dev/$PROJECT_ID/interviewscaffold/app'
       - '--region'
-      - 'europe-west1'
+      - 'europe-west1-b'
       - '--platform'
       - 'managed'
       - '--allow-unauthenticated'
