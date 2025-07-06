@@ -44,6 +44,20 @@ steps:
       - '10'
       - '--min-instances'
       - '0'
+      - '--set-env-vars'
+      - 'SPRING_PROFILES_ACTIVE=docker'
+  
+  # Ensure the service is publicly accessible
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      - 'run'
+      - 'services'
+      - 'add-iam-policy-binding'
+      - 'interviewscaffold'
+      - '--region=europe-west1'
+      - '--member=allUsers'
+      - '--role=roles/run.invoker'
 
 # Store the built image in Artifact Registry
 images:
