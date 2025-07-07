@@ -14,21 +14,21 @@ public class CounterService {
     @Transactional
     public int increment() {
         Counter counter = counterRepository.findById(1L).orElse(new Counter(0));
-        counter.setValue(counter.getValue() + 1);
+        counter.setCount(counter.getCount() + 1);
         counterRepository.save(counter);
-        return counter.getValue();
+        return counter.getCount();
     }
 
     @Transactional
     public int decrement() {
         Counter counter = counterRepository.findById(1L).orElse(new Counter(0));
-        counter.setValue(counter.getValue() - 1);
+        counter.setCount(counter.getCount() - 1);
         counterRepository.save(counter);
-        return counter.getValue();
+        return counter.getCount();
     }
 
     @Transactional(readOnly = true)
-    public int getValue() {
-        return counterRepository.findById(1L).map(Counter::getValue).orElse(0);
+    public int getCount() {
+        return counterRepository.findById(1L).map(Counter::getCount).orElse(0);
     }
 } 

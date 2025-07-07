@@ -7,23 +7,23 @@ import jakarta.persistence.Id;
 public class Counter {
     @Id
     private Long id = 1L; // Always use the same id for singleton counter
-    private int value;
+    private int count;
 
     public Counter() {}
 
-    public Counter(int value) {
-        this.value = value;
+    public Counter(int count) {
+        this.count = count;
     }
 
     public Long getId() {
         return id;
     }
 
-    public int getValue() {
-        return value;
+    public int getCount() {
+        return count;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setCount(int count) {
+        this.count = count;
     }
 } 
