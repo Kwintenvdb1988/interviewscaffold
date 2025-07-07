@@ -10,11 +10,9 @@ This project uses a **single, optimized Dockerfile** for all environments.
 - **Production optimized** with JRE-only runtime
 - **Used by**: Production, CI/CD, local Docker Compose
 
-### `docker-compose.yml` - Production
+### `docker-compose.yml`
 - Uses main Dockerfile
 - Full application (frontend + backend)
-
-
 
 ### `dev.sh` - Hot Reload Development
 - Backend runs in Docker
@@ -24,21 +22,8 @@ This project uses a **single, optimized Dockerfile** for all environments.
 ## Usage
 
 ```bash
-# Production build
-docker build -t myapp .
-
-# Production run
-docker compose up
 
 # Development (hot reload)
 sh ./dev.sh
 
-# Full application in Docker
-docker compose up
 ```
-
-## Why Single Dockerfile?
-- ✅ **Simpler maintenance**
-- ✅ **Consistent builds** across environments
-- ✅ **Faster builds** with proper caching
-- ✅ **Less confusion** for developers 

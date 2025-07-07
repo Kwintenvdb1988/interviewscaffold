@@ -1,16 +1,4 @@
 steps:
-  # Create Artifact Registry repository if it doesn't exist
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'gcloud'
-    args:
-      - 'artifacts'
-      - 'repositories'
-      - 'create'
-      - 'interviewscaffold'
-      - '--repository-format=docker'
-      - '--location=europe-west1'
-      - '--description=Interview Scaffold Docker Repository'
-    allowFailure: true  # Don't fail if repository already exists
   
   # Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
@@ -41,7 +29,7 @@ steps:
       - '--cpu'
       - '1'
       - '--max-instances'
-      - '10'
+      - '3'
       - '--min-instances'
       - '0'
       - '--set-env-vars'
@@ -62,9 +50,6 @@ steps:
 # Store the built image in Artifact Registry
 images:
   - 'europe-west1-docker.pkg.dev/$PROJECT_ID/interviewscaffold/app'
-
-# Build timeout (optional)
-timeout: '1200s'
 
 # Logging configuration
 options:
