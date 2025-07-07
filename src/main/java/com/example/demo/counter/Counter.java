@@ -1,4 +1,4 @@
-package com.example.demo.repositories;
+package com.example.demo.counter;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

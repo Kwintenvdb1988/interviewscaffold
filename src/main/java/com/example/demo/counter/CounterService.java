@@ -1,7 +1,5 @@
-package com.example.demo.services;
+package com.example.demo.counter;
 
-import com.example.demo.repositories.Counter;
-import com.example.demo.repositories.CounterRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
