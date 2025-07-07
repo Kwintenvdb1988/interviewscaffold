@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 interface ApiResponse {
@@ -8,14 +8,64 @@ interface ApiResponse {
 }
 
 function App() {
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState<number | null>(null);
+  const [counterLoading, setCounterLoading] = useState(false);
+  const [counterError, setCounterError] = useState<string | null>(null);
   const [apiResponse, setApiResponse] = useState<ApiResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const increment = () => setCounter(prev => prev + 1);
-  const decrement = () => setCounter(prev => prev - 1);
-  const reset = () => setCounter(0);
+  // Fetch counter value on mount
+  useEffect(() => {
+    fetchCounter();
+  }, []);
+
+  const fetchCounter = async () => {
+    setCounterLoading(true);
+    setCounterError(null);
+    try {
+      const response = await fetch('/api/counter');
+      if (!response.ok) throw new Error('Failed to fetch counter');
+      const value = await response.text();
+      setCounter(Number(value));
+    } catch (err) {
+      setCounterError(err instanceof Error ? err.message : 'An error occurred');
+    } finally {
+      setCounterLoading(false);
+    }
+  };
+
+  const increment = async () => {
+    setCounterLoading(true);
+    setCounterError(null);
+    try {
+      const response = await fetch('/api/counter/increment', { method: 'POST' });
+      if (!response.ok) throw new Error('Failed to increment');
+      const value = await response.text();
+      setCounter(Number(value));
+    } catch (err) {
+      setCounterError(err instanceof Error ? err.message : 'An error occurred');
+    } finally {
+      setCounterLoading(false);
+    }
+  };
+
+  const decrement = async () => {
+    setCounterLoading(true);
+    setCounterError(null);
+    try {
+      const response = await fetch('/api/counter/decrement', { method: 'POST' });
+      if (!response.ok) throw new Error('Failed to decrement');
+      const value = await response.text();
+      setCounter(Number(value));
+    } catch (err) {
+      setCounterError(err instanceof Error ? err.message : 'An error occurred');
+    } finally {
+      setCounterLoading(false);
+    }
+  };
+
+  const reset = fetchCounter;
 
   const testApi = async () => {
     setLoading(true);
@@ -47,19 +97,27 @@ function App() {
         <div className="counter-section">
           <h2>Counter Component</h2>
           <div className="counter-display">
-            <span className="counter-value">{counter}</span>
+            <span className="counter-value">
+              {counterLoading ? <span className="loading" /> : counter}
+            </span>
           </div>
           <div className="counter-controls">
-            <button onClick={increment} className="btn btn-primary">
+            <button onClick={increment} className="btn btn-primary" disabled={counterLoading}>
               ➕ Increment
             </button>
-            <button onClick={decrement} className="btn btn-secondary">
+            <button onClick={decrement} className="btn btn-secondary" disabled={counterLoading}>
               ➖ Decrement
             </button>
-            <button onClick={reset} className="btn btn-reset">
+            <button onClick={reset} className="btn btn-reset" disabled={counterLoading}>
               🔄 Reset
             </button>
           </div>
+          {counterError && (
+            <div className="api-response error">
+              <div className="status-badge error">❌ Error</div>
+              <p>{counterError}</p>
+            </div>
+          )}
         </div>
 
         <div className="api-section">
